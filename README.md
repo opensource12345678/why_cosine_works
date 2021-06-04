@@ -8,20 +8,20 @@ All code are implemented in Python. One can install the dependency as follows,
 pip install -r requirements.txt
 ```
 
-## CIFAR-10 with 10 Epochs
+## CIFAR-10 with 100 Epochs
 
-All codes are stored in branch "cifar10-10-epochs", please checkout to that
+All codes are stored in branch "cifar10-100-epochs", please checkout to that
 branch first.
 
 ```sh
-git checkout cifar10-10-epochs
+git checkout cifar10-100-epochs
 ```
 
 An alternative is to download the code of that branch to run this part of the
 experiments.
 
 ```
-https://github.com/opensource12345678/why_cosine_works/tree/cifar10-10-epochs
+https://github.com/opensource12345678/why_cosine_works/tree/cifar10-100-epochs
 ```
 
 ### Grid Search Based on Validation Accuracy

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-epoch=10
+epoch=100
 
 for model in resnet googlenet vgg16; do
   echo "========== ${model}"

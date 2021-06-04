@@ -69,16 +69,20 @@ def parse_argument(sys_argv):
     # Parameters related to the scheduling
     parser.add_argument(
         '--min_lr',
-		type=float,
-		nargs='?',
+        type=float,
+		    nargs='?',
         const=None,
-		default=None,
+		    default=None,
         help=textwrap.dedent(
             '''
             None by default. If specified, the scheduling will do a linear
             scaling for all learning rates to make the learing rate in last
             iteration equal to `min_lr`.
             '''))
+
+    parser.add_argument(
+        '--beta', type=float, default=2.0,
+        help='The constant which controls the interval for eigenvalues')
 
     # Parameters related to the optimization problem
     parser.add_argument(
@@ -123,7 +127,7 @@ def parse_input(input_eigenval_file):
     return np.asarray(list(zip(eigenval_list, density_list)))
 
 
-def get_schedule(eigenval_with_density_np, num_iter):
+def get_schedule(eigenval_with_density_np, num_iter, beta):
     """Generates proposed eigenvalue-dependent scheduling.
 
     Encoded in piecewise inverse time decay scheduling.
@@ -135,6 +139,7 @@ def get_schedule(eigenval_with_density_np, num_iter):
             is its corresponding density. Rows are sorted in ascending order of
             eigenvalue.
         num_iter: int, number of iterations.
+        beta: float, the constant which controls the interval for eigenvalues.
 
     Returns:
         A tuple of three lists with same length:
@@ -163,8 +168,8 @@ def get_schedule(eigenval_with_density_np, num_iter):
                                #   = Accumulated density in interval
                                #     [t_i, t_{i+1}]
     i = 0
-    l_bound = lambda i: mu * (2 ** i)
-    r_bound = lambda i: mu * (2 ** (i+1))
+    l_bound = lambda i: mu * (beta ** i)
+    r_bound = lambda i: mu * (beta ** (i+1))
 
     for eigenval, density in eigenval_with_density_np:
         # Finds the interval that "l_bound(i) <= eigenval < r_bound(i)"
@@ -260,8 +265,8 @@ def get_schedule(eigenval_with_density_np, num_iter):
     b_list = []
 
     for i, delta in enumerate(num_iter_np):
-        a = 1 / kappa * (2 ** i)
-        b = 1 if i == 0 else b_list[i-1] + 1 / kappa * prev_delta * (2 ** (i-1))
+        a = 1 / kappa * (beta ** i)
+        b = 1 if i == 0 else b_list[i-1] + 1 / kappa * prev_delta * (beta ** (i-1))
         t = t_list[i] + delta
         prev_delta = delta
 
@@ -301,7 +306,8 @@ def main():
     # Computes values for the config file
     starting_point_list, a_list, b_list = get_schedule(
         eigenval_with_density_np,
-        args.num_iter)
+        args.num_iter,
+        beta=args.beta)
 
     # Prepares the config content
     starting_points_str = ', '.join([str(x) for x in starting_point_list])

@@ -47,7 +47,7 @@ function run_hyperparam_search() {
   echo "$(date): ===== search lambda-dependent with same kappa:"
   for init_lr in 0.3; do
     echo "$(date):  init_lr: ${init_lr}"
-    for min_lr in 0.01; do
+    for min_lr in 0.001; do
       echo "$(date):    min_lr: ${min_lr}"
 
       # Skips if have experiment records before
@@ -68,6 +68,7 @@ function run_hyperparam_search() {
         > /dev/null
 
       python3 python/scripts/gen_eigen_dependent_schedule_conf.py \
+        --beta 1.000005 \
         --input_eigenval_file tmp/sorted_eigenvalue_model-${model_type}_iter-3000.abs.scale.txt \
         --output_file ${conf_path} \
         --num_iter ${num_iter} \
@@ -89,7 +90,7 @@ function run_hyperparam_search() {
   done
 
   echo "$(date): ===== search cosine decay:"
-  for init_lr in 0.2; do
+  for init_lr in 0.3; do
     echo "$(date):  init_lr: ${init_lr}"
     for min_lr in 0.01; do
       echo "$(date):    min_lr: ${min_lr}"
@@ -137,7 +138,7 @@ EOF
   done
 
   echo "$(date): ===== search inverse time decay:"
-  for init_lr in 0.1; do
+  for init_lr in 0.6; do
     echo "$(date):  init_lr: ${init_lr}"
     for min_lr in 0.01; do
       local lambda=$(python3 -c "print((${init_lr} / ${min_lr} - 1) / (${init_lr} * (${num_iter_per_restart} - 1)))")
@@ -177,7 +178,7 @@ EOF
   done
 
   echo "$(date): ===== common piecewise decay (used with momentum, but here no momentum used):"
-  for init_lr in 0.1; do
+  for init_lr in 1.0; do
     # Skips if have experiment records before
     local prefix="step-decay_resnet_piecewise_init-lr-${init_lr}_epoch-${num_epoch}_0.33-epoch-0.1_0.66-epoch-0.01_run-${run}"
     if [ -f ${log_dir}/${prefix}.log ]; then
@@ -214,7 +215,7 @@ function main() {
   local model_type="googlenet"
   local dataset="cifar10"
   local num_sample=50000
-  local num_epoch=10
+  local num_epoch=100
   run_hyperparam_search ${model_type} ${dataset} ${num_sample} ${num_epoch}
 }
 

@@ -68,6 +68,7 @@ function run_hyperparam_search() {
         > /dev/null
 
       python3 python/scripts/gen_eigen_dependent_schedule_conf.py \
+        --beta 1.000005 \
         --input_eigenval_file tmp/sorted_eigenvalue_model-${model_type}_iter-3000.abs.scale.txt \
         --output_file ${conf_path} \
         --num_iter ${num_iter} \
@@ -218,7 +219,7 @@ function main() {
   local model_type="vgg16"
   local dataset="cifar10"
   local num_sample=50000
-  local num_epoch=10
+  local num_epoch=100
   run_hyperparam_search ${model_type} ${dataset} ${num_sample} ${num_epoch}
 }
 
