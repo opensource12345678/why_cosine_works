@@ -71,7 +71,7 @@ The output density plot is saved as example.pdf
 `output/` stores the estimated eigenvalue distribution with different
 precisions, which is specified by "q". `checkpoints/` stores the trained model,
 i.e. after first phase in our cosine-explanation paper, for eigenvalue
-distribution. `figures` stores the generated eigenvalue distribution figures.
+distribution. `figures/` stores the generated eigenvalue distribution figures.
 
 ## Citation
 PyHessian has been developed as part of the following paper. We appreciate it if you would please cite the following paper if you found the library useful for your work:
