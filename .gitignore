@@ -5,5 +5,4 @@
 */*/__pycache__/
 
 log/*
-tmp/*
 conf/ridge_regression/*
