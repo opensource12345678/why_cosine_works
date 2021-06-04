@@ -1,0 +1,9 @@
+*.swp
+*.swo
+
+*/__pycache__
+*/*/__pycache__/
+
+log/*
+tmp/*
+conf/ridge_regression/*
