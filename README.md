@@ -10,7 +10,7 @@ pip install -r requirements.txt
 
 ## Modified PyHessian
 
-All aboved experiments use the generated eigenvalue distribution of Hessian,
+All other experiments use the generated eigenvalue distribution of Hessian,
 which is already provided without the need to run PyHessian. This part of the
 code is only for checking and reviewing, where we made some modifications
 to make the commandline interface of PyHessian more flexible.
