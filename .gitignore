@@ -1,0 +1,12 @@
+# Swap files
+*.swp
+*.swo
+
+# Python tmp files
+*/__pycache__/
+*/*/__pycache__/
+
+# Generated directory
+log/*
+tmp/*
+conf/ridge_regression/*
