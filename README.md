@@ -116,7 +116,9 @@ website and verifying the institute after registration.
 After obtaining a verified account, one can download the [Training
 set](https://image-net.org/data/ILSVRC/2012/ILSVRC2012_img_train.tar) and
 [Validation
-set](https://image-net.org/data/ILSVRC/2012/ILSVRC2012_img_val.tar).
+set](https://image-net.org/data/ILSVRC/2012/ILSVRC2012_img_val.tar). The test
+set is not used, which is the same setting as in most papers, since the labels
+are not released in that website.
 
 #### Preprocess ImageNet Data
 
