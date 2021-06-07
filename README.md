@@ -1,4 +1,17 @@
-# why_cosine_works
+# Why Cosine Learning Rate Scheduler Works and How to Improve It?
+
+**Reach lower bound if the Hessian eigenvalue distribution is highly skewed.**
+
+<img src="figures/scheduler_comparison.png" width="500">
+
+**Estimated eigenvalue distribution of Hessian of GoogLeNet/VGG16 in CIFAR-10
+and ResNet-18 in ImageNet: highly skewed.**
+
+<img src="figures/eigenvalue-distributions_googlenet-vgg16-cifar10_resnet18-imagenet.png" width="500">
+
+**Observation: Less epochs, more concave learning rate schedulers.**
+
+<img src="figures/cosine-power.png" width="500">
 
 ## Dependency
 
