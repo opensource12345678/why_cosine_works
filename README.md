@@ -1,4 +1,4 @@
-# Why Cosine Learning Rate Scheduler Works and How to Improve It?
+# Eigencurve: Optimal Learning Rate Schedule for SGD on Quadratic Objectives with Skewed Hessian Spectrums
 
 ## Overview
 
