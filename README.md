@@ -1,4 +1,4 @@
-# why_cosine_works
+# Eigencurve: Optimal Learning Rate Schedule for SGD on Quadratic Objectives with Skewed Hessian Spectrums
 
 ## Dependency
 
